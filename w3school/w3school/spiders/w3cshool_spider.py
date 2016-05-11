@@ -11,8 +11,7 @@ class W3schoolSpider(Spider):
     ]
 
     def parse(self, response):
-        sel = Selector(response)
-        sites = sel.xpath('//div[@id="navsecond"]/div[@id="course"]/ul[1]/li')
+        sites = response.xpath('//div[@id="navsecond"]/div[@id="course"]/ul[1]/li')
         items = []
 
         for site in sites:
