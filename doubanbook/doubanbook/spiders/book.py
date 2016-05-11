@@ -17,6 +17,7 @@ class BookSpider(scrapy.Spider):
         #     item['score']=sel.xpath('div[@class="info"]/div[@class="star clearfix"]/span[@class="rating_nums"]/text()').extract()
         #     yield item
 
-        next_page_url = response.xpath('//a/@href').extract()
 
-        yield next_page_url
+        item=DoubanbookItem()
+        next_url ='https://book.douban.com/'+response.xpath('//link[@rel="next"]/@href').extract()[0].encode('utf-8')
+        yield scrapy.Request(next_url, callback=self.parse)
