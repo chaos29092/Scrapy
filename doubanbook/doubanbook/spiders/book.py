@@ -5,6 +5,7 @@ from doubanbook.items import DoubanbookItem
 
 class BookSpider(scrapy.Spider):
     name = "book"
+    download_delay = 2
     allowed_domains = ["book.douban.com"]
     start_urls = (
         'https://book.douban.com/tag/%E4%BA%92%E8%81%94%E7%BD%91',
@@ -18,6 +19,5 @@ class BookSpider(scrapy.Spider):
         #     yield item
 
 
-        item=DoubanbookItem()
         next_url ='https://book.douban.com/'+response.xpath('//link[@rel="next"]/@href').extract()[0].encode('utf-8')
         yield scrapy.Request(next_url, callback=self.parse)
