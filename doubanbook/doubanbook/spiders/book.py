@@ -12,11 +12,12 @@ class BookSpider(scrapy.Spider):
     )
 
     def parse(self, response):
-        # for sel in response.xpath('//ul/li[@class="subject-item"]'):
-        #     item=DoubanbookItem()
-        #     item['author']=sel.xpath('div[@class="info"]/h2/a/text()[1]').extract()
-        #     item['score']=sel.xpath('div[@class="info"]/div[@class="star clearfix"]/span[@class="rating_nums"]/text()').extract()
-        #     yield item
+        for sel in response.xpath('//ul/li[@class="subject-item"]'):
+            item=DoubanbookItem()
+            item['title']=sel.xpath('div[@class="info"]/h2/a/text()[1]').extract()
+            item['author']=sel.xpath('div[@class="info"]/h2/div[@class="pub"]/text()').extract()
+            item['score']=sel.xpath('div[@class="info"]/div[@class="star clearfix"]/span[@class="rating_nums"]/text()').extract()
+            yield item
 
 
         next_url ='https://book.douban.com/'+response.xpath('//link[@rel="next"]/@href').extract()[0].encode('utf-8')

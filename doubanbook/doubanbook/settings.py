@@ -16,7 +16,7 @@ NEWSPIDER_MODULE = 'doubanbook.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
+# USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS=32
@@ -49,11 +49,12 @@ USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, lik
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
-# DOWNLOADER_MIDDLEWARES = {
-#    # 'doubanbook.middlewares.MyCustomDownloaderMiddleware': 555,
-#     'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
-#     'doubanbook.spiders.rotate_useragent.RotateUserAgentMiddleware':400,
-# }
+DOWNLOADER_MIDDLEWARES = {
+    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
+    'doubanbook.middlewares.RotateUserAgentMiddleware':400,
+    # 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': None,
+    # 'doubanbook.middlewares.ProxyMiddleware': 410,
+}
 
 # Enable or disable extensions
 # See http://scrapy.readthedocs.org/en/latest/topics/extensions.html

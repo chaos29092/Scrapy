@@ -11,4 +11,5 @@ import scrapy
 class DoubanbookItem(scrapy.Item):
     author = scrapy.Field()
     score = scrapy.Field()
+    title = scrapy.Field()
 
